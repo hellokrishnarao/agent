@@ -1,0 +1,110 @@
+body{
+    font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Meiryo, メイリオ, Osaka, "MS PGothic", arial, helvetica, sans-serif !important;
+}
+.fc-widget-content {
+ height: 40px !important;
+}
+.fc-time, .fc-title {
+color:white;
+font-size:1.5em;    
+}
+.fc-list-heading-main{
+color:#243143;
+}
+.fc-list-item-time, .fc-widget-content{
+color:#243143;
+
+}
+.black-bg{
+background:#00BFFF;
+border-bottom: none;
+}
+.fa-bars:before{
+color: #fff;
+}
+#sidebar {
+    
+background: #DCF6FF;    
+}
+#sidebar h5{
+    font-size: 20px !important;
+}
+.wrapper{
+    background: white;
+}
+
+ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+background: white;
+color:#243143;
+}
+ul.sidebar-menu li a :hover {
+color:#FF3161;
+}
+ul.sidebar-menu li a {
+color:#FF3161;
+}
+.fa-tachometer-alt:before{
+color:#FF3161;
+}
+ul.top-menu > li > .logout {
+color: #00BFFF; 
+background: white;
+}
+ul.top-menu > li > .logout:hover, ul.top-menu > li > .logout:focus {
+color: white !important; 
+background: #00BFFF !important;
+border: 1px solid white !important ;
+}
+.fc-toolbar.fc-header-toolbar{
+color:#FF3161;
+}
+button, html [type="button"]{
+background:white;
+font-size:1.5em;
+}
+/**Available
+.*/ 
+.fc-event  {
+background: rgb(54, 173, 153);
+opacity: 1;
+border: 1px solid #fff;
+padding: 2px;
+font-size:1em;
+color:white ;
+}
+.fc-event-dot {
+background: rgb(54, 173, 153);
+}
+.logo:hover{
+color:white;
+
+}
+
+#sidebar h5{
+color:#243143;
+}
+@media (max-width: 768px){
+.fc-state-active, .fc-state-active .fc-button-inner, .fc-state-hover, .fc-state-hover .fc-button-inner {
+color: #243143 !important;
+}
+
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+
+    margin-top: 30px;
+}
+
+
+.site-footer {
+    color: #fff!important;
+    background: #00BFFF !important;
+}
+
+.fa-home:before, .fa-user:before, .fa-calendar-alt:before, .fa-cogs:before {
+    color: #FF3161;
+}
+
+.fc th, .fc td {
+    color: #243143;
+}

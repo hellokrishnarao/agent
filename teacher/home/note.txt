@@ -1,0 +1,12 @@
+/var/www/html/agent/teacher/home/other%20pages/assets
+
+
+use tables for monthwise class history
+
+charts ? for increase in hours per week? level of students?
+
+todo list - memo for both students and teachers
+
+UI Elements for teacher card. 
+
+
