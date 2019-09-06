@@ -266,7 +266,7 @@ $teachers = $teacher->get_all_teachers();
                             <div class="row">
 <?php
 $last = count($teachers) - 1;
-
+$i = 0;
 foreach ($teachers as $teacher => $values) {
 	$isFirst = ($teacher == 0);
 	$isLast = ($teacher == $last);
@@ -275,25 +275,67 @@ foreach ($teachers as $teacher => $values) {
 
 
                             <div class="col-lg-4 col-md-4 col-sm-4 mb" >
-                                <div class="content-panel pn">
-                                  <div id="profile-01" style="height:50%;">
-                                    <h3>' . $values['first_name'] . ' ' . $values['last_name'] . '</h3>
 
-                                  </div>
-                                  <div class="profile-01 centered" >
-                                    <a href="#">See Availability</a>
-                                  </div>
-                                  <div class="centered">
-                                        <h6>From  ' . $values['nationality'] . ' </h6>
-                                     <h6>Ratings:   </h6>
-                                      <h6>Credits: </h6>
-                                  </div>
-                                </div> <!--/content-panel -->
-                          </div>
+                                    <div class="wrapper">
+
+
+
+    <div class="span3 well">
+        <center>
+        <a href="#aboutModal" data-toggle="modal" data-target="#myModal' . $i . '"><img src="assets/img/profile.png" class="img-circle responsive img-fluid"></a>
+        <h3>' . $values["first_name"] . ' ' . $values["last_name"] . '</h3>
+        <em>click my face for more</em>
+    </center>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal' . $i . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">About ' . $values["first_name"] . ' ' . $values["last_name"] . '</h4>
+                    </div>
+                <div class="modal-body">
+                    <center>
+                    <img src="assets/img/profile.png" name="aboutme" width="140" height="140" border="0" class="img-circle img-fluid"></a>
+                    <h3 class="media-heading">' . $values["first_name"] . ' ' . $values["last_name"] . '<small>,  ' . $values["nationality"] . '</small></h3>
+                    <span><strong>Level </strong></span>
+                        <span class="label label-info">' . $values["jlpt"] . '</span>
+
+                    </center>
+                    <hr>
+                    <center>
+                    <p class="text-left"><strong>Bio: </strong><br>
+                        ' . $values["description"] . '</p>
+                    <br>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <center>
+
+<form action="teachers" method="get">
+                    <button type="submit" style="float=left" name="id" value="' . $values["id"] . '" class="logout btn btn-success" >Check Availability</button>
+
+</form>
+                    <a href="" class="logout btn btn-danger" data-dismiss="modal">Cancel</a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+                                </div>
+
 
 
 
 ';
+	$i = $i + 1;
 }
 
 ?>
@@ -325,6 +367,8 @@ foreach ($teachers as $teacher => $values) {
     <script src="assets/js/common-scripts.js"></script>
 
 
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

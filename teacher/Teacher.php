@@ -92,7 +92,9 @@ class Teacher {
 	}
 
 	public function get_teacher_info() {
+
 		$id = $_SESSION['id'];
+
 		$result = "SELECT * from teachers WHERE id='$id'";
 
 		//checking if the username is available in the table

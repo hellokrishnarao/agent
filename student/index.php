@@ -3,10 +3,6 @@ require "../error-report.php";
 
 ?>
 
-<?php
-require "../error-report.php";
-
-?>
 
 <!doctype html>
 <html lang="en">

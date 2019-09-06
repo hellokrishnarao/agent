@@ -10,3 +10,7 @@ todo list - memo for both students and teachers
 UI Elements for teacher card. 
 
 
+
+
+
+            Server time to be chosen by teacher / student. (Settings) (in the beginning)

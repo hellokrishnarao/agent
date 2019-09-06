@@ -643,5 +643,3 @@
             </div>
 
 
-
-            Server time to be chosen by teacher / student. (Settings) (in the beginning)

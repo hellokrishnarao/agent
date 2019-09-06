@@ -14,7 +14,9 @@ $student->set_id($_SESSION['id']);
 
 //Fetch all student's data like name, email, id etc
 $data = $student->get_student_info();
-$_SESSION = array_merge($_SESSION, $data);
+
+$teachers_id = $_GET['id'];
+$_SESSION['teachers_id'] = $teachers_id;
 
 ?>
 
@@ -28,7 +30,7 @@ $_SESSION = array_merge($_SESSION, $data);
     <script src="https://kit.fontawesome.com/3fc7d0e35a.js"></script>
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>Student | Schedule</title>
+    <title>Student | Home</title>
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
@@ -91,53 +93,47 @@ background: #FF3161;
          var duration = moment.duration(selectInfo.end.diff(selectInfo.start));
          return duration.asHours() <= 0.5;
     },
-
-    select: function(start, end, allDay)
+	    eventClick:function(event)
     {
-     //var title = prompt("Enter Event Title");
-     // if(title)
-     // {
-
-      var title = 'Available';
-      var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-      var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-      $.ajax({
-       url:"insert.php",
-       type:"POST",
-       data:{title:title,start:start, end:end},
-       success:function()
-       {
-        calendar.fullCalendar('refetchEvents');
-        //alert("Added Successfully");
-       }
-
-      })
-      calendar.fullCalendar('refetchEvents');
-     // }
-
-    },
-    editable:false,
-
-
-
-
-    eventClick:function(event)
-    {
-     if(confirm("Are you sure you want to cancel your class it?"))
+	if(confirm("Are you sure you want to book your class?"))
      {
-      var id = event.id;
-      $.ajax({
-       url:"delete.php",
-       type:"POST",
-       data:{id:id},
-       success:function()
-       {
-        calendar.fullCalendar('refetchEvents');
-        //alert("Event Removed");
-       }
-      })
+        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+     var title = event.title;
+     var id = event.id;
+     var teacher_id =<?php echo $teachers_id ?>;
+     var student_id =<?php echo $_SESSION['id'] ?>;
+     $.ajax({
+      url:"book.php",
+      type:"POST",
+      data:{start:start, end:end, id:id, teacher_id:teacher_id, student_id:student_id},
+      success:function(){
+       calendar.fullCalendar('refetchEvents');
+       //alert('Event Update');
+      }
+     })
      }
+
     },
+
+
+    // eventClick:function(event)
+    // {
+    //  if(confirm("Are you sure you want to cancel your class it?"))
+    //  {
+    //   var id = event.id;
+    //   $.ajax({
+    //    url:"delete.php",
+    //    type:"POST",
+    //    data:{id:id},
+    //    success:function()
+    //    {
+    //     calendar.fullCalendar('refetchEvents');
+    //     //alert("Event Removed");
+    //    }
+    //   })
+    //  }
+    // },
 
    });
    $( ".fc-v-event" ).css( "background", "red" );
@@ -160,7 +156,7 @@ background: #FF3161;
               <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="#" class="logo" id=""><b>Student</b> <span class="fa fa-chevron-right">&nbsp;</span><b>Schedule</b> </a>
+            <a href="#" class="logo" id=""><b>Student</b> <span class="fa fa-chevron-right">&nbsp;</span><b>Home</b> </a>
             <!--logo end-->
 
             <div class="top-menu">
@@ -175,11 +171,11 @@ background: #FF3161;
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-                  <p class="centered"><a href="profile"><img src="../assets/img/profile.png" class="img-circle" width="60"></a></p>
+                  <p class="centered"><a href="../profile"><img src="../assets/img/profile.png" class="img-circle" width="60"></a></p>
                   <h5 class="centered" id="profile-picture"><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name'] ?></h5>
 
                   <li class="mt">
-                      <a class="" href="../">
+                      <a class="active" href="../">
                           <i class="fa fa-home"></i>
                           <span>Home</span>
                       </a>
@@ -191,7 +187,7 @@ background: #FF3161;
                       </a>
                   </li>
                    <li class="mt">
-                      <a class="active" href="#">
+                      <a class="" href="../schedule">
                           <i class="fa fa-calendar-alt"></i>
                           <span>Schedule</span>
                       </a>
@@ -209,21 +205,20 @@ background: #FF3161;
               <!-- sidebar menu end-->
           </div>
       </aside>
-
-    <section id="main-content">
+<section id="main-content">
           <section class="wrapper site-min-height">
-            <h3>Your Scheduled Classes</h3>
-            <div class="row mt">
-              <div class="col-lg-12">
-              <section class="panel">
+          	<h3><?php echo $values["first_name"] ?></h3>
+          	<div class="row mt">
+          		<div class="col-lg-12">
+          		<section class="panel">
                         <div class="panel-body">
                             <div id="calendar" class="has-toolbar"></div>
                         </div>
                     </section>
-              </div>
-            </div>
+          		</div>
+          	</div>
 
-    </section>
+		</section>
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->

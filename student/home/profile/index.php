@@ -39,6 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!--external css-->
     <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../assets/js/gritter/css/jquery.gritter.css" />
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="../assets/css/style.css" rel="stylesheet">
@@ -46,9 +48,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://kit.fontawesome.com/3fc7d0e35a.js"></script>
     <link href="../assets/css/main.css" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  </head>
+    <style>
+    body{padding-top:30px;}
+
+    .glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+    small {
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
+}
+    </style>
+</head>
 
   <body>
 
@@ -82,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-              	  <p class="centered"><a href="profile"><img src="../assets/img/profile.png" class="img-circle" width="60"></a></p>
+              	  <p class="centered"><a href="#"><img src="../assets/img/profile.png" class="img-circle" width="60"></a></p>
               	  <h5 class="centered"><?php echo $data['first_name'] . " " . $data['last_name'] ?></h5>
 
                   <li class="mt">
@@ -122,7 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
 
-
       <section id="main-content">
           <section class="wrapper site-min-height">
 
@@ -136,13 +146,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">User ID</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" id="disabledInput" name="id" type="text" placeholder="<?php echo $data['id']; ?>" disabled>
+                                  <input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $_SESSION['id']; ?>" disabled>
                               </div>
                           </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">First Name</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" name="first_name" value="<?php echo $data['first_name']; ?>">
+                                  <input type="text" class="form-control" name="first_name"  value="<?php echo $data['first_name']; ?>">
                               </div>
                           </div>
                           <div class="form-group">
@@ -154,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                           <div class="form-group">
                                <label class="col-sm-2 col-sm-2 control-label">Email</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" id="disabledInput" type="text" name="email" value="<?php echo $data['email']; ?>" disabled>
+                                  <input class="form-control" id="disabledInput" type="text"  name="email" value="<?php echo $data['email']; ?>" disabled>
                               </div>
                           </div>
                             <div class="form-group">
@@ -166,19 +176,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="form-group">
                                <label class="col-sm-2 col-sm-2 control-label">Gender</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" id="disabledInput" name="gender" type="text" value="<?php echo $data['gender']; ?>"  disabled>
+                                  <input class="form-control" id="disabledInput" type="text" name="gender" value="<?php echo $data['gender']; ?>"  disabled>
                               </div>
                           </div>
                             <div class="form-group">
                                <label class="col-sm-2 col-sm-2 control-label">Nationality</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" id="disabledInput" name="nationality" type="text"value="<?php echo $data['nationality']; ?>"  disabled>
+                                  <input class="form-control" id="disabledInput" type="text" name="nationality" value="<?php echo $data['nationality']; ?>"  disabled>
                               </div>
                           </div>
                             <div class="form-group">
                                <label class="col-sm-2 col-sm-2 control-label">Date of Birth</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" id="disabledInput" name="dob" type="text" value="<?php echo $data['dob']; ?>" disabled>
+                                  <input class="form-control" id="disabledInput" type="text" name="dob" value="<?php echo $data['dob']; ?>" disabled>
                               </div>
                           </div>
 
@@ -186,21 +196,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Current JLPT Level</label>
+                              <label class="col-sm-2 col-sm-2 control-label">JLPT</label>
                               <div class="col-sm-10">
                                        <select class="form-control" name="jlpt">
                             <option value="<?php echo $data['jlpt']; ?>" selected disabled><?php echo $data['jlpt']; ?> (Current)</option>
-                            <option value="n1">n1</option>
+                            <option value="n1">n1 (Native)</option>
                             <option value="n2">n2</option>
                             <option value="n3">n3</option>
                             <option value="n4">n4</option>
                             <option value="n5">n5</option>
-                            <option value="beginner">Beginner</option>
-                            </select>
+
+                          </select>
 
                               </div>
                           </div>
-
 
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Self Introduction</label>
@@ -220,11 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div><!-- /row -->
 
 
-
-
-
-
-    </section>
+		</section>
         <!---/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
@@ -240,8 +245,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <!--footer end-->
   </section>
 
-
+      <!--common script for all pages-->
     <script src="../assets/js/common-scripts.js"></script>
+
+
+
+    <!-- js placed at the end of the document so the pages load faster -->
+
+    <script src="../assets/js/bootstrap.min.js"></script>
+
+
+    <script src="../assets/js/font.js" type="text/javascript" charset="utf-8"></script>
+    <!--common script for all pages-->
+    <script src="../assets/js/common-scripts.js"></script>
+
+    <!--script for this page-->
+
+    <!--common script for all pages-->
 
 
   <script>
@@ -252,6 +272,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       });
 
   </script>
-
+		 <script src="../assets/js/common-scripts.js"></script>
   </body>
 </html>
