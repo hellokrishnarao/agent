@@ -15,8 +15,8 @@ $student->set_id($_SESSION['id']);
 //Fetch all student's data like name, email, id etc
 $data = $student->get_student_info();
 
-$teachers_id = $_GET['id'];
-$_SESSION['teachers_id'] = $teachers_id;
+$teacher_id = $_GET['id'];
+$_SESSION['teacher_id'] = $teacher_id;
 
 ?>
 
@@ -69,6 +69,7 @@ background: #FF3161;
   $(document).ready(function() {
    var calendar = $('#calendar').fullCalendar({
     theme: '',
+    timeZone: 'UTC',
     disableResizing: true,
     disableDragging: true,
     eventResizableFromStart:false,
@@ -101,7 +102,7 @@ background: #FF3161;
      var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
      var title = event.title;
      var id = event.id;
-     var teacher_id =<?php echo $teachers_id ?>;
+     var teacher_id =<?php echo $teacher_id ?>;
      var student_id =<?php echo $_SESSION['id'] ?>;
      $.ajax({
       url:"book.php",

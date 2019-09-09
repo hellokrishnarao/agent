@@ -1,4 +1,4 @@
-<?php
+ <?php
 require "../../../error-report.php";
 require "../../../database/db-config.php";
 session_start();
@@ -215,11 +215,9 @@ background: #FF3161;
             <h3>Your Scheduled Classes</h3>
             <div class="row mt">
               <div class="col-lg-12">
-              <section class="panel">
-                        <div class="panel-body">
+
                             <div id="calendar" class="has-toolbar"></div>
-                        </div>
-                    </section>
+
               </div>
             </div>
 

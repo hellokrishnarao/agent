@@ -70,7 +70,7 @@ require "../error-report.php";
 
     <section class="page-section" id="services" style="background: white; height: 95%; border-radius: 3px">
         <div class="container">
-            <h2 class="text-center mt-0">-Steps to be follwed-</h2>
+            <h2 class="text-center mt-0">Steps to be follwed</h2>
             <hr class="divider my-4">
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">

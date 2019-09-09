@@ -105,7 +105,21 @@ class Student {
 			return 'no data';
 		}
 	}
+	public function get_student_data($id) {
 
+		$result = "SELECT * from students WHERE id='$id'";
+
+		//checking if the username is available in the table
+		$result = mysqli_query($this->db, $result);
+		$user_data = mysqli_fetch_array($result);
+		$count_row = $result->num_rows;
+
+		if ($count_row == 1) {
+			return $user_data;
+		} else {
+			return 'no data';
+		}
+	}
 	public function update_details($id, $first_name, $last_name, $jlpt, $phone, $description) {
 
 		$update = "UPDATE `students` SET `first_name`='$first_name',`last_name`='$last_name',`jlpt`='$jlpt',`description`='$description',`phone`='$phone'  WHERE `id` = '$id'";

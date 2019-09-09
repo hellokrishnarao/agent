@@ -71,7 +71,7 @@ require "../error-report.php";
 
     <section class="page-section" id="services" style="background: white; height: 95%; border-radius: 3px">
         <div class="container">
-            <h2 class="text-center mt-0">-Steps to be follwed-</h2>
+            <h2 class="text-center mt-0">Steps to be follwed</h2>
             <hr class="divider my-4">
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">
@@ -85,7 +85,7 @@ require "../error-report.php";
                     <div class="mt-5">
                         <i class="fas fa-4x fa-ticket-alt text-primary mb-4"></i>
                         <h3 class="h4 mb-2">2. Confirmation</h3>
-                        <p class="text-muted mb-0">After request eait for confirmation it</p>
+                        <p class="text-muted mb-0">After request wait for confirmation it</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">

@@ -13,14 +13,36 @@ $statement = $connect->prepare($query);
 $statement->execute();
 
 $result = $statement->fetchAll();
-	
+
 foreach ($result as $row) {
-	$data[] = array(
-		'id' => $row["id"],
-		'title' => $row["title"],
-		'start' => $row["start_event"],
-		'end' => $row["end_event"],
-	);
+	if ($row["title"] == 'Available') {
+		$data[] = array(
+			'id' => $row["id"],
+			'title' => $row["title"],
+			'start' => $row["start_event"],
+			'end' => $row["end_event"],
+			'color' => '#FF6C00',
+		);
+	} elseif ($row['title'] == 'Booked') {
+		$data[] = array(
+			'id' => $row["id"],
+			'title' => "New Request",
+			'start' => $row["start_event"],
+			'end' => $row["end_event"],
+			'color' => '#00BFFF',
+			'student_id' => $row['student_id'],
+		);
+	} elseif ($row['title'] == 'Confirmed') {
+		$data[] = array(
+			'id' => $row["id"],
+			'title' => $row["title"],
+			'start' => $row["start_event"],
+			'end' => $row["end_event"],
+			'color' => '#53D467',
+			'student_id' => $row['student_id'],
+		);
+	}
+
 }
 
 echo json_encode($data);

@@ -75,7 +75,7 @@ require "error-report.php";
                 </div>
                 <div class="col-lg-8 align-self-baseline">
                     <p class="text-white-75 font-weight-light mb-5">
-                    Get better at conversing in Japanese at your the comfort of your home!
+                    Get better at conversing in Japanese at your comfortable place!
                     </p>
                     <a class="btn btn-primary btn-xl js-scroll-trigger" href="#services">Find Out More</a>
                 </div>

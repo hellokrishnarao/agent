@@ -58,13 +58,15 @@ $_SESSION = array_merge($_SESSION, $data);
 
     </style>
 
-
     <!-- Custom styles for this template -->
     <script>
+
+
 
   $(document).ready(function() {
    var calendar = $('#calendar').fullCalendar({
     theme: '',
+    timeZone: 'UTC',
     disableResizing: true,
     disableDragging: true,
     eventResizableFromStart:false,
@@ -152,19 +154,30 @@ $_SESSION = array_merge($_SESSION, $data);
 
     eventClick:function(event)
     {
-     if(confirm("Are you sure you want to remove it?"))
-     {
       var id = event.id;
-      $.ajax({
-       url:"delete.php",
-       type:"POST",
-       data:{id:id},
-       success:function()
-       {
-        calendar.fullCalendar('refetchEvents');
-        //alert("Event Removed");
-       }
-      })
+      var title = event.title;
+     if(title == "New Request")
+     {
+      location.href = "./requests?id="+event.student_id+"&event="+event.id;
+
+     }
+     else if(title == "Available"){
+      if(confirm("Are you sure you want to delete  slot?")){
+        $.ajax({
+           url:"delete.php",
+           type:"POST",
+           data:{id:id},
+           success:function()
+           {
+            calendar.fullCalendar('refetchEvents');
+            //alert("Event Removed");
+           }
+        })
+      }
+     }
+
+     else if(title == "Confirmed"){
+      // code to Cancellation of the class
      }
     },
 
@@ -251,7 +264,7 @@ $_SESSION = array_merge($_SESSION, $data);
       <!--main content start-->
 
         <section id="main-content">
-          <section class="wrapper">
+          <section class="wrapper  site-min-height">
             <h3><i class="" style="padding:10px; margin-top: -100px !important;"></i>Your Schedule for the Week!</h3>
 
 
@@ -294,7 +307,7 @@ $_SESSION = array_merge($_SESSION, $data);
     <script src="assets/js/common-scripts.js"></script>
 
     <!--script for this page-->
-		
+
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 

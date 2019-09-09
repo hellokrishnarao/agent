@@ -1,8 +1,8 @@
 <?php
-
 require "../../../error-report.php";
 require "../../../database/db-config.php";
 require "../../Teacher.php";
+require '../../../profile-images/Photo.php';
 session_start();
 
 $teacher = new Teacher(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
@@ -15,6 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	if (!isset($_POST['experience'])) {
 		$_POST['experience'] = $data['experience'];
+	}
+	if (isset($_FILES['file'])) {
+		$fileupload = new Photo($_FILES['file']);
+		if ($fileupload->uploadfile()) {
+			echo 'Yay';
+		} else {
+			echo "Nope ";
+		}
 	}
 
 	if ($teacher->update_details($data['id'], $_POST['first_name'], $_POST['last_name'], $_POST['jlpt'], $_POST['experience'], $_POST['phone'], $_POST['description'])) {
@@ -144,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="col-lg-12">
                   <div class="form-panel">
 
-                      <form class="form-horizontal style-form" method="post">
+                      <form class="form-horizontal style-form" method="post"  action="" enctype="multipart/form-data">
 
                             <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">User ID</label>
@@ -234,6 +242,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                               </div>
                           </div>
                           <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Profile Picture</label>
+                              <div class="col-sm-10">
+                                  <input type="file" class="form-control" name="profile" value="New Picture">
+                              </div>
+                          </div>
+                          <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Save and Update</label>
                               <div class="col-sm-10">
                                   <button type="submit" class="form-control btn btn-success">Done</button>
@@ -276,9 +290,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="../assets/js/common-scripts.js"></script>
 
     <!--script for this page-->
-		
+
     <!--common script for all pages-->
-   
+
 
   <script>
       //custom select box

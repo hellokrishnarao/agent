@@ -70,6 +70,7 @@ $teachers = $teacher->get_all_teachers();
   $(document).ready(function() {
    var calendar = $('#calendar').fullCalendar({
     theme: '',
+    timeZone: 'UTC',
     disableResizing: true,
     disableDragging: true,
     eventResizableFromStart:false,
@@ -258,11 +259,9 @@ $teachers = $teacher->get_all_teachers();
       <!--main content start-->
 
         <section id="main-content">
-          <section class="wrapper">
+          <section class="wrapper  site-min-height">
             <h3><i class="" style="padding:10px; margin-top: -100px !important;"></i>Your Classes  for the Week!</h3>
 
-       <section class="panel">
-                        <div class="panel-body">
                             <div class="row">
 <?php
 $last = count($teachers) - 1;
@@ -346,13 +345,11 @@ foreach ($teachers as $teacher => $values) {
                     </section>
 
 
-              </div>
-              <!-- page end-->
-        </section>
+
 
       <!--main content end-->
       <!--footer start-->
-      <footer class="site-footer" >
+      <footer class="site-footer center" >
       Copyright © AGENT, Inc. All Rights Reserved.
       </footer>
       <!--footer end-->
