@@ -60,10 +60,15 @@ $_SESSION = array_merge($_SESSION, $data);
 
     <!-- Custom styles for this template -->
     <script>
+ var today = new Date();
+  var h = today.getHours()-1;
+  var m = "00";
+  var s = "00";
 
-
+ var firstHour = h + ":" + m + ":" + s;
 
   $(document).ready(function() {
+
    var calendar = $('#calendar').fullCalendar({
     theme: '',
     timeZone: 'UTC',
@@ -80,6 +85,7 @@ $_SESSION = array_merge($_SESSION, $data);
     editable:false,
     eventOverlap: false,
     defaultView: 'agendaWeek',
+    scrollTime: firstHour,
     nowIndicator:true,
     duration: { days: 5 },
     events: 'load.php', // to get the slots from the database
@@ -177,7 +183,7 @@ $_SESSION = array_merge($_SESSION, $data);
      }
 
      else if(title == "Confirmed"){
-      // code to Cancellation of the class
+      location.href = "./requests?id="+event.student_id+"&event="+event.id;
      }
     },
 
