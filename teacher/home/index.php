@@ -14,7 +14,7 @@ $teacher->set_id($_SESSION['id']);
 
 //Fetch all teacher's data like name, email, id etc
 $data = $teacher->get_teacher_info();
-$_SESSION = array_merge($_SESSION, $data);
+//$_SESSION = array_merge($_SESSION, $data);
 
 ?>
 
