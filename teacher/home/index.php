@@ -60,15 +60,10 @@ $data = $teacher->get_teacher_info();
 
     <!-- Custom styles for this template -->
     <script>
- var today = new Date();
-  var h = today.getHours()-1;
-  var m = "00";
-  var s = "00";
 
- var firstHour = h + ":" + m + ":" + s;
+
 
   $(document).ready(function() {
-
    var calendar = $('#calendar').fullCalendar({
     theme: '',
     timeZone: 'UTC',
@@ -85,7 +80,6 @@ $data = $teacher->get_teacher_info();
     editable:false,
     eventOverlap: false,
     defaultView: 'agendaWeek',
-    scrollTime: firstHour,
     nowIndicator:true,
     duration: { days: 5 },
     events: 'load.php', // to get the slots from the database
@@ -183,7 +177,7 @@ $data = $teacher->get_teacher_info();
      }
 
      else if(title == "Confirmed"){
-      location.href = "./requests?id="+event.student_id+"&event="+event.id;
+      // code to Cancellation of the class
      }
     },
 

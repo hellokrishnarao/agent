@@ -64,12 +64,6 @@ background: #FF3161;
     <!-- Custom styles for this template -->
     <script>
 
- var today = new Date();
-  var h = today.getHours()-1;
-  var m = "00";
-  var s = "00";
-
- var firstHour = h + ":" + m + ":" + s;
   $(document).ready(function() {
    var calendar = $('#calendar').fullCalendar({
     theme: '',
@@ -86,7 +80,6 @@ background: #FF3161;
     editable:false,
     eventOverlap: false,
     defaultView: 'listWeek',
-    scrollTime: firstHour,
     nowIndicator:true,
     duration: { days: 5 },
     events: 'load.php', // to get the slots from the database
@@ -133,20 +126,15 @@ background: #FF3161;
      if(confirm("Are you sure you want to cancel your class it?"))
      {
       var id = event.id;
-      var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-      var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-
       $.ajax({
        url:"delete.php",
        type:"POST",
-       data:{ id:id, start:start, end:end},
+       data:{id:id},
        success:function()
        {
-
         calendar.fullCalendar('refetchEvents');
-       // alert("Event Removed");
-       },
-
+        //alert("Event Removed");
+       }
       })
      }
     },

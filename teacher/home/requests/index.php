@@ -26,7 +26,7 @@ $end_event = $teacher->get_end_event($event_id);
 
 $_SESSION['teachers_id'] = $teachers_id;
 //print_r($student_info)
-if ($_POST['submit'] == "confirm") {
+if (isset($_POST['submit'])) {
 
 	if ($teacher->confirm_event($start_event[0], $end_event[0], $event_id)) {
 		$error = false;
@@ -37,15 +37,6 @@ if ($_POST['submit'] == "confirm") {
 			$error = "Already confirmed";
 		}
 		$error = "Not confirmed";
-	}
-} elseif ($_POST['submit'] == "cancel") {
-	$result = $teacher->cancel_event($start_event[0], $end_event[0], $event_id);
-	if ($result == "1") {
-		$error = false;
-		header("location:../");
-
-	} else {
-		$error = "Could not Delete";
 	}
 }
 ?>
@@ -331,19 +322,9 @@ if (isset($error)) {
                                     </div>
 
                                 </div>
-
-                                <?php
-if ($teacher->is_confirmed($event_id) == true) {
-	echo '<form action="" method="post">
-        <button type="submit" class="btn btn-danger" name="submit" value="cancel">Cancel</button>
-      </form>';
-} else {
-	echo '<form action="" method="post">
-        <button type="submit" class="btn btn-success" name="submit" value="confirm">Confirm</button>
-      </form>';
-}
-
-?>
+                                <form action="" method="post">
+                                  <button type="submit" class="btn btn-success" name="submit" value="submit">Confirm</button>
+                                </form>
                             </div>
                         </div>
 

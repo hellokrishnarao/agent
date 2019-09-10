@@ -67,12 +67,6 @@ $teachers = $teacher->get_all_teachers();
     <!-- Custom styles for this template -->
     <script>
 
- var today = new Date();
-  var h = today.getHours()-1;
-  var m = "00";
-  var s = "00";
-
- var firstHour = h + ":" + m + ":" + s;
   $(document).ready(function() {
    var calendar = $('#calendar').fullCalendar({
     theme: '',
@@ -93,7 +87,6 @@ $teachers = $teacher->get_all_teachers();
     editable:false,
     eventOverlap: false,
     defaultView: 'agendaWeek',
-    scrollTime: firstHour,
     duration: { days: 5 },
     events: 'load.php', // to get the slots from the database
     selectable:true,
