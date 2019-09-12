@@ -19,7 +19,7 @@ class Student {
 		return $this->id;
 	}
 	/*** for registration process ***/
-	public function register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $description, $api_id, $phone) {
+	public function register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $phone) {
 
 		$password = md5($password); // HASH
 		$sql = "SELECT * FROM students WHERE email='$email' OR phone='$phone'";
@@ -30,7 +30,7 @@ class Student {
 
 		//if the username is not in db then insert to the table
 		if ($count_row == 0) {
-			$insert = "INSERT INTO students SET first_name='$firstName',last_name='$lastName', password='$password', email='$email', gender='$gender', dob='$dob',nationality='$nationality', jlpt = '$jlpt', description = '$description', api_id= '$api_id', phone='$phone'";
+			$insert = "INSERT INTO students SET first_name='$firstName',last_name='$lastName', password='$password', email='$email', gender='$gender', dob='$dob',nationality='$nationality', jlpt = '$jlpt', phone='$phone'";
 			$result = mysqli_query($this->db, $insert) or die(mysqli_connect_errno() . " Data cannot inserted");
 			$_SESSION['login'] = TRUE;
 
@@ -120,9 +120,9 @@ class Student {
 			return 'no data';
 		}
 	}
-	public function update_details($id, $first_name, $last_name, $jlpt, $phone, $description, $api_id) {
+	public function update_details($id, $first_name, $last_name, $jlpt, $phone, $description) {
 
-		$update = "UPDATE `students` SET `first_name`='$first_name',`last_name`='$last_name',`jlpt`='$jlpt',`description`='$description',`phone`='$phone', `api_id` = '$api_id',  WHERE `id` = '$id'";
+		$update = "UPDATE `students` SET `first_name`='$first_name',`last_name`='$last_name',`jlpt`='$jlpt',`description`='$description',`phone`='$phone'  WHERE `id` = '$id'";
 		$result = mysqli_query($this->db, $update);
 
 		$count_row = $result->num_rows;

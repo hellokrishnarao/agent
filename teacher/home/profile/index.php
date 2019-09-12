@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 	}
 
-	if ($teacher->update_details($data['id'], $_POST['first_name'], $_POST['last_name'], $_POST['jlpt'], $_POST['experience'], $_POST['phone'], $_POST['api_id'], $_POST['description'])) {
+	if ($teacher->update_details($data['id'], $_POST['first_name'], $_POST['last_name'], $_POST['jlpt'], $_POST['experience'], $_POST['phone'], $_POST['description'])) {
 		$data = $teacher->get_teacher_info();
 		$error = false;
 	} else {
@@ -235,12 +235,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                               </div>
                           </div>
-                            <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Skype ID</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" name="api_id" value="<?php echo $data['api_id']; ?>" >
-                              </div>
-                            </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Self Introduction</label>
                               <div class="col-sm-10">

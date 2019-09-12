@@ -7,18 +7,12 @@ $student = new Student(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 $error = $_SESSION['error'];
 if (isset($_REQUEST['submit'])) {
 	extract($_REQUEST);
-	if (!isset($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $description, $api_id, $experience, $phone)) {
+	if (!isset($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone)) {
 		$error = 'Please fill all the fields';
 		$_SESSION['error'] = $error;
 		header("location: ../register/");
 	}
-	if ($password != $password_confirmation) {
-		$error = 'Passwords do not Match!';
-		$_SESSION['error'] = $error;
-		header("location: ../register/");
-		exit;
-	}
-	$register = $student->register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $description, $api_id, $phone);
+	$register = $student->register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $phone);
 	if ($register) {
 		// Registration Success
 		header("location:../home");
@@ -98,7 +92,7 @@ if (isset($_REQUEST['submit'])) {
             <ul id="progressbar">
                 <li class="active">Basic Information</li>
                 <li>Personal Details</li>
-                <li>Current Level</li>
+                <li>Qualifications</li>
             </ul>
             <h2 class="fs-title">Basic Information</h2>
 <?php
@@ -130,7 +124,7 @@ if (isset($error)) {
             <ul id="progressbar">
                 <li>Basic Information</li>
                 <li class="active">Personal Details</li>
-                <li>Current Level</li>
+                <li>Qualifications</li>
             </ul>
             <h2 class="fs-title">Personal Details</h2>
 
@@ -417,9 +411,9 @@ if (isset($error)) {
             <ul id="progressbar">
                 <li>Basic Information</li>
                 <li>Personal Details</li>
-                <li class="active">Current Level</li>
+                <li class="active">Qualifications</li>
             </ul>
-            <h2 class="fs-title">Current Level</h2>
+            <h2 class="fs-title">Qualifications</h2>
 
             <div class=" form-group">
                 <select class="drop col-sm  mr-2" name="jlpt" value="">
@@ -433,11 +427,6 @@ if (isset($error)) {
                 </select>
 
 
-        <div class=" form-group">
-                <input type="text" name="api_id" value="" class="col-sm form-control  mr-2" placeholder="Skype ID" />
-                <textarea name="description" class="col-sm form-control  mr-2" placeholder="Your interests, goals and self introduction"></textarea>
-
-            </div>
 
 </select>
 

@@ -7,19 +7,13 @@ $teacher = new Teacher(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 $error = $_SESSION['error'];
 if (isset($_REQUEST['submit'])) {
 	extract($_REQUEST);
-	if (!isset($firstName, $lastName, $password, $password_confirmation, $email, $gender, $dob, $nationality, $jlpt, $description, $api_id, $experience, $phone)) {
-
+	if (!isset($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone)) {
 		$error = 'Please fill all the fields';
 		$_SESSION['error'] = $error;
 		header("location: ../register/");
 	}
-	if ($password != $password_confirmation) {
-		$error = 'Passwords do not Match!';
-		$_SESSION['error'] = $error;
-		header("location: ../register/");
-	}
 
-	$register = $teacher->register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $description, $api_id, $experience, $phone);
+	$register = $teacher->register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone);
 	if ($register) {
 		// Registration Success
 
@@ -440,11 +434,7 @@ if (isset($error)) {
                     <option value="n4">N4</option>
                     <option value="n5">N5</option>
                 </select>
-                <div class=" form-group">
-                 <input type="text" name="api_id" value="" class="col-sm form-control  mr-2" placeholder="Skype ID" />
-                <textarea name="description" class="col-sm form-control  mr-2" placeholder="Your interests, goals and self introduction"></textarea>
 
-            </div>
 
 <select class="drop col-sm mr-2 " name="experience" value="">
     <option selected disabled>Teaching Experience</option>
