@@ -19,7 +19,7 @@ class Teacher {
 		return $this->id;
 	}
 	/*** for registration process ***/
-	public function register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone) {
+	public function register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $description, $api_id, $experience, $phone) {
 
 		$password = md5($password); // HASH
 		$sql = "SELECT * FROM teachers WHERE email='$email' OR phone='$phone'";
@@ -30,7 +30,7 @@ class Teacher {
 
 		//if the username is not in db then insert to the table
 		if ($count_row == 0) {
-			$insert = "INSERT INTO teachers SET first_name='$firstName',last_name='$lastName', password='$password', email='$email', gender='$gender', dob='$dob', nationality='$nationality', jlpt = '$jlpt', experience='$experience', phone='$phone'";
+			$insert = "INSERT INTO teachers SET first_name='$firstName',last_name='$lastName', password='$password', email='$email', gender='$gender', dob='$dob', nationality='$nationality', jlpt = '$jlpt', description= '$description', api_id= '$api_id', experience='$experience', phone='$phone'";
 			$result = mysqli_query($this->db, $insert) or die(mysqli_connect_errno() . "Data cannot inserted");
 			$_SESSION['login'] = TRUE;
 
@@ -130,9 +130,9 @@ class Teacher {
 		}
 	}
 
-	public function update_details($id, $first_name, $last_name, $jlpt, $experience, $phone, $description) {
+	public function update_details($id, $first_name, $last_name, $jlpt, $experience, $phone, $api_id, $description) {
 
-		$update = "UPDATE `teachers` SET `first_name`='$first_name',`last_name`='$last_name',`jlpt`='$jlpt',`experience`='$experience',`description`='$description',`phone`='$phone'  WHERE `id` = '$id'";
+		$update = "UPDATE `teachers` SET `first_name`='$first_name',`last_name`='$last_name',`jlpt`='$jlpt',`experience`='$experience',`description`='$description',`phone`='$phone' , `api_id` = '$api_id' WHERE `id` = '$id'";
 		$result = mysqli_query($this->db, $update);
 
 		$count_row = $result->num_rows;
