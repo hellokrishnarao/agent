@@ -7,13 +7,13 @@ $teacher = new Teacher(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 $error = $_SESSION['error'];
 if (isset($_REQUEST['submit'])) {
 	extract($_REQUEST);
-	if (!isset($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone)) {
+	if (!isset($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone, $api_id, $description)) {
 		$error = 'Please fill all the fields';
 		$_SESSION['error'] = $error;
 		header("location: ../register/");
 	}
 
-	$register = $teacher->register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone);
+	$register = $teacher->register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone, $api_id, $description);
 	if ($register) {
 		// Registration Success
 
@@ -444,6 +444,12 @@ if (isset($error)) {
 
 </select>
 
+            </div>
+             <div class=" form-group">
+                <input type="text" name="api_id" value="" class="col-sm form-control  mr-2" placeholder="Skype ID" />
+            </div>
+            <div class=" form-group">
+                <textarea type="text" name="description" value="" class="col-sm form-control  mr-2" placeholder="About your interests, goals and teaching methods"></textarea>
             </div>
             <div class=" form-group">
                    <p style="font-size:13px;" class="col-sm form-control ">By submitting, I accept the <a href="terms/">Terms and Conditions</a><p>

@@ -14,7 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_POST['jlpt'] = $data['jlpt'];
 	}
 
-	if ($student->update_details($data['id'], $_POST['first_name'], $_POST['last_name'], $_POST['jlpt'], $_POST['phone'], $_POST['description'])) {
+	if (!isset($_POST['description'])) {
+		$_POST['description'] = $data['description'];
+	}
+	if (!isset($_POST['api_id'])) {
+		$_POST['api_id'] = $data['api_id'];
+	}
+	if ($student->update_details($data['id'], $_POST['first_name'], $_POST['last_name'], $_POST['jlpt'], $_POST['phone'], $_POST['description'], $_POST['api_id'])) {
 		$data = $student->get_student_info();
 		$error = false;
 	} else {
@@ -210,11 +216,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                               </div>
                           </div>
-
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Skype ID</label>
+                              <div class="col-sm-10">
+                                  <input type="text" name="api_id" placeholder="Skype ID" class="form-control" value="<?php echo $data['api_id']; ?>"/>
+                              </div>
+                          </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Self Introduction</label>
                               <div class="col-sm-10">
-                                  <textarea type="text" name="description" placeholder="About you, your classes, and interests" class="form-control"><?php echo $data['description']; ?></textarea>
+                                  <textarea type="text" name="description" placeholder="About you, your goals, and interests" class="form-control"><?php echo $data['description']; ?></textarea>
                               </div>
                           </div>
                           <div class="form-group">

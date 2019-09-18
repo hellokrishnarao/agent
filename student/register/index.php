@@ -7,12 +7,12 @@ $student = new Student(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 $error = $_SESSION['error'];
 if (isset($_REQUEST['submit'])) {
 	extract($_REQUEST);
-	if (!isset($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone)) {
+	if (!isset($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $experience, $phone, $api_id, $description)) {
 		$error = 'Please fill all the fields';
 		$_SESSION['error'] = $error;
 		header("location: ../register/");
 	}
-	$register = $student->register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $phone);
+	$register = $student->register($firstName, $lastName, $password, $email, $gender, $dob, $nationality, $jlpt, $phone, $api_id, $description);
 	if ($register) {
 		// Registration Success
 		header("location:../home");
@@ -92,7 +92,7 @@ if (isset($_REQUEST['submit'])) {
             <ul id="progressbar">
                 <li class="active">Basic Information</li>
                 <li>Personal Details</li>
-                <li>Qualifications</li>
+                <li>Current Level</li>
             </ul>
             <h2 class="fs-title">Basic Information</h2>
 <?php
@@ -124,7 +124,7 @@ if (isset($error)) {
             <ul id="progressbar">
                 <li>Basic Information</li>
                 <li class="active">Personal Details</li>
-                <li>Qualifications</li>
+                <li>Current Level</li>
             </ul>
             <h2 class="fs-title">Personal Details</h2>
 
@@ -411,9 +411,9 @@ if (isset($error)) {
             <ul id="progressbar">
                 <li>Basic Information</li>
                 <li>Personal Details</li>
-                <li class="active">Qualifications</li>
+                <li class="active">Current Level</li>
             </ul>
-            <h2 class="fs-title">Qualifications</h2>
+            <h2 class="fs-title">Current Level</h2>
 
             <div class=" form-group">
                 <select class="drop col-sm  mr-2" name="jlpt" value="">
@@ -430,6 +430,12 @@ if (isset($error)) {
 
 </select>
 
+            </div>
+               <div class=" form-group">
+                <input type="text" name="api_id" value="" class="col-sm form-control  mr-2" placeholder="Skype ID" />
+            </div>
+            <div class=" form-group">
+                <textarea type="text" name="description" value="" class="col-sm form-control  mr-2" placeholder="About your interests, goals and expectations from class"></textarea>
             </div>
             <div class=" form-group">
                    <p style="font-size:13px;" class="col-sm form-control ">By submitting, I accept the <a href="terms/">Terms and Conditions</a><p>

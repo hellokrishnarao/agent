@@ -66,7 +66,7 @@ $_SESSION = array_merge($_SESSION, $data);
  scroll = (scroll.getHours()-1 )+":00:00";
 
   console.log(scroll);
-  $(document).ready(function() {
+ $(document).ready(function() {
    var calendar = $('#calendar').fullCalendar({
     theme: '',
     timeZone: 'UTC',

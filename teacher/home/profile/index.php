@@ -2,7 +2,7 @@
 require "../../../error-report.php";
 require "../../../database/db-config.php";
 require "../../Teacher.php";
-require '../../../profile-images/Photo.php';
+
 session_start();
 
 $teacher = new Teacher(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
@@ -16,16 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (!isset($_POST['experience'])) {
 		$_POST['experience'] = $data['experience'];
 	}
-	if (isset($_FILES['file'])) {
-		$fileupload = new Photo($_FILES['file']);
-		if ($fileupload->uploadfile()) {
-			echo 'Yay';
-		} else {
-			echo "Nope ";
-		}
+	if (!isset($_POST['description'])) {
+		$_POST['description'] = $data['description'];
+	}
+	if (!isset($_POST['api_id'])) {
+		$_POST['api_id'] = $data['api_id'];
 	}
 
-	if ($teacher->update_details($data['id'], $_POST['first_name'], $_POST['last_name'], $_POST['jlpt'], $_POST['experience'], $_POST['phone'], $_POST['description'])) {
+	if ($teacher->update_details($data['id'], $_POST['first_name'], $_POST['last_name'], $_POST['jlpt'], $_POST['experience'], $_POST['phone'], $_POST['api_id'], $_POST['description'])) {
 		$data = $teacher->get_teacher_info();
 		$error = false;
 	} else {
@@ -146,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="col-lg-12">
                   <div class="form-panel">
 
-                      <form class="form-horizontal style-form" method="post"  action="" enctype="multipart/form-data">
+                      <form class="form-horizontal style-form" method="post"  action="" enctype="">
 
                             <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">User ID</label>
@@ -230,17 +228,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                               </div>
                           </div>
                           <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Skype ID</label>
+                              <div class="col-sm-10">
+                                  <input type="text" name="api_id" placeholder="Skype ID" class="form-control" value="<?php echo $data['api_id']; ?>"/>
+                              </div>
+                          </div>
+                          <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Self Introduction</label>
                               <div class="col-sm-10">
                                   <textarea type="text" name="description" placeholder="About you, your classes, and interests" class="form-control"><?php echo $data['description']; ?></textarea>
                               </div>
                           </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Profile Picture</label>
-                              <div class="col-sm-10">
-                                  <input type="file" class="form-control" name="profile" value="New Picture">
-                              </div>
-                          </div>
+
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Save and Update</label>
                               <div class="col-sm-10">
