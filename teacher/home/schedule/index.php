@@ -13,27 +13,27 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/3fc7d0e35a.js"></script>
     <meta name="author" content="Dashboard">
- 
+
     <title>Teacher Schedule</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
     <link href="../assets/font-awesome/css/fontawesome.css" rel="stylesheet" />
-   
+
     <link rel="stylesheet" type="text/css" href="../assets/lineicons/style.css">
 
     <!-- Custom styles for this template -->
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/style-responsive.css" rel="stylesheet">
-    <link href="../assets/css/main.css" rel="stylesheet">   
+    <link href="../assets/css/main.css" rel="stylesheet">
      <style>
-      
+
         label {
             width: 80px;
             display: inline-block;
         }
-        
+
     </style>
     <link rel="stylesheet" href="TimeSheet.css" type="text/css" media="screen">
 </head>
@@ -51,7 +51,7 @@ session_start();
             <!--logo start-->
             <a href="#" class="logo" id=""><b>Teacher</b> <span class="fa fa-chevron-right">&nbsp;</span><b>Schedular</b> </a>
             <!--logo end-->
-            
+
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
                     <li><a class="logout" href="../../logout">Logout</a></li>
@@ -82,12 +82,6 @@ session_start();
                       </a>
                   </li>
                    <li class="mt">
-                      <a class="active" href="schedule">
-                          <i class="fa fa-calendar-alt"></i>
-                          <span>Schedule</span>
-                      </a>
-                  </li>
-                   <li class="mt">
                       <a class="" href="../settings">
                           <i class="fa fa-cogs"></i>
                           <span>Settings</span>
@@ -105,13 +99,13 @@ session_start();
 <section id="main-content">
           <section class="wrapper site-min-height">
           	<h3><i class="fa fa-angle-right"></i> Schedule your class for the next 12 days</h3>
-          
-        
+
+
 
 
           	<div class="row mt">
           		<div class="col-lg-12">
-          		
+
     <div class="container" style="margin-top:70px;">
         <div id="J_calenderWrapper">
             <table>
@@ -133,7 +127,7 @@ session_start();
     </div>
           		</div>
           	</div>
-			
+
 		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
@@ -149,8 +143,8 @@ session_start();
       </footer>
       <!--footer end-->
   </section>
-   
-  
+
+
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="TimeSheet.js"></script>
     <script type="text/javascript">
@@ -160,13 +154,13 @@ session_start();
 $max_dates = 12;
 $countDates = 0;
 while ($countDates < $max_dates) {
-    $NewDate=Date('M d, Y', strtotime("+".$countDates." days"));
-    echo " {
-        name: ". "\"".$NewDate."\"".
-    "},";
-    $countDates += 1;
+	$NewDate = Date('M d, Y', strtotime("+" . $countDates . " days"));
+	echo " {
+        name: " . "\"" . $NewDate . "\"" .
+		"},";
+	$countDates += 1;
 }
-?>  
+?>
         ];
 
         var hourList = [{
@@ -471,7 +465,7 @@ while ($countDates < $max_dates) {
     <script src="../assets/js/common-scripts.js"></script>
 
     <!--script for this page-->
-    
+
   <script>
       //custom select box
 

@@ -120,12 +120,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                       </a>
                   </li>
                    <li class="mt">
-                      <a class="" href="../schedule">
-                          <i class="fa fa-calendar-alt"></i>
-                          <span>Schedule</span>
-                      </a>
-                  </li>
-                   <li class="mt">
                       <a class="" href="../settings">
                           <i class="fa fa-cogs"></i>
                           <span>Settings</span>

@@ -64,6 +64,8 @@ background: #FF3161;
     <!-- Custom styles for this template -->
     <script>
 
+  var scroll = new Date(Date.now())
+ scroll = (scroll.getHours()-1 )+":00:00";
   $(document).ready(function() {
    var calendar = $('#calendar').fullCalendar({
     theme: '',
@@ -80,6 +82,7 @@ background: #FF3161;
     editable:false,
     eventOverlap: false,
     defaultView: 'listWeek',
+    scrollTime:scroll,
     nowIndicator:true,
     duration: { days: 5 },
     events: 'load.php', // to get the slots from the database

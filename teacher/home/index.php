@@ -14,7 +14,7 @@ $teacher->set_id($_SESSION['id']);
 
 //Fetch all teacher's data like name, email, id etc
 $data = $teacher->get_teacher_info();
-//$_SESSION = array_merge($_SESSION, $data);
+$_SESSION = array_merge($_SESSION, $data);
 
 ?>
 
@@ -62,7 +62,10 @@ $data = $teacher->get_teacher_info();
     <script>
 
 
+  var scroll = new Date(Date.now())
+ scroll = (scroll.getHours()-1 )+":00:00";
 
+  console.log(scroll);
   $(document).ready(function() {
    var calendar = $('#calendar').fullCalendar({
     theme: '',
@@ -81,6 +84,7 @@ $data = $teacher->get_teacher_info();
     eventOverlap: false,
     defaultView: 'agendaWeek',
     nowIndicator:true,
+    scrollTime:scroll,
     duration: { days: 5 },
     events: 'load.php', // to get the slots from the database
     selectable:true,
@@ -237,12 +241,7 @@ $data = $teacher->get_teacher_info();
                           <span>Profile</span>
                       </a>
                   </li>
-                   <li class="mt">
-                      <a class="" href="schedule">
-                          <i class="fa fa-calendar-alt"></i>
-                          <span>Schedule</span>
-                      </a>
-                  </li>
+
                    <li class="mt">
                       <a class="" href="settings">
                           <i class="fa fa-cogs"></i>

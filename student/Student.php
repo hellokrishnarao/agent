@@ -134,4 +134,31 @@ class Student {
 		}
 
 	}
+	public function change_password($current, $new, $confirm) {
+
+		$id = $this->id;
+		$result = "SELECT password from students WHERE id='$id'";
+		$new = md5($new);
+		$confirm = md5($confirm);
+		$current = md5($current);
+		//checking if the username is available in the table
+		$result = mysqli_query($this->db, $result);
+		$user_data = mysqli_fetch_array($result);
+		$old = $user_data[0];
+
+		if ($new != $confirm) {
+			return 'New Password and Confirm Password do not match! Try Again!';
+		} elseif ($current != $old) {
+			return 'Please enter the previous password correctly!';
+		} else {
+			$change_password = "UPDATE teachers SET password='$new' WHERE id='$id'";
+
+			//checking if the username is available in the table
+			$change_password = mysqli_query($this->db, $change_password);
+
+			if ($change_password == true) {
+				return 'Password Changed Succes	fully';
+			}
+		}
+	}
 }
