@@ -26,7 +26,7 @@ $end_event = $teacher->get_end_event($event_id);
 
 $_SESSION['teachers_id'] = $teachers_id;
 //print_r($student_info)
-if (isset($_POST['submit'])) {
+if (isset($_POST['confirm'])) {
 
 	if ($teacher->confirm_event($start_event[0], $end_event[0], $event_id)) {
 		$error = false;
@@ -34,9 +34,24 @@ if (isset($_POST['submit'])) {
 
 	} else {
 		if (!$error) {
-			$error = "Already confirmed";
+			echo "Already confirmed";
 		}
-		$error = "Not confirmed";
+		echo "Not confirmed";
+	}
+}
+
+if (isset($_POST['cancel'])) {
+	// write cancel event
+	// write 24 hour logic using (now-$start_event[0]) with if clause
+	if ($teacher->cancel_event($event_id)) {
+		$error = false;
+		header("location:../");
+
+	} else {
+		if (!$error) {
+			echo "Could not cancel";
+		}
+		echo "Something is Wrong";
 	}
 }
 ?>
@@ -51,7 +66,7 @@ if (isset($_POST['submit'])) {
     <script src="https://kit.fontawesome.com/3fc7d0e35a.js"></script>
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>Teacher | New Requests</title>
+    <title>Teacher | Requests</title>
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
@@ -166,7 +181,6 @@ body{
         }
     </style>
 
-
   </head>
 
   <body>
@@ -181,7 +195,7 @@ body{
               <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="#" class="logo" id=""><b>Teacher</b> <span class="fa fa-chevron-right">&nbsp;</span><b>New Requests</b> </a>
+            <a href="#" class="logo" id=""><b>Teacher</b> <span class="fa fa-chevron-right">&nbsp;</span><b>Requests</b> </a>
             <!--logo end-->
 
             <div class="top-menu">
@@ -300,6 +314,21 @@ if (isset($error)) {
                                             </div>
                                         </div>
                                         <hr />
+
+
+
+
+
+                                           <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Skype CALL</label>
+
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                               <a href="skype:<?php echo $student_info['api_id'] ?>?call" value="">Open Skype</a>
+                                            </div>
+                                        </div>
+                                        <hr />
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">JLPT</label>
@@ -323,7 +352,12 @@ if (isset($error)) {
 
                                 </div>
                                 <form action="" method="post">
-                                  <button type="submit" class="btn btn-success" name="submit" value="submit">Confirm</button>
+                                  <?php if ($teacher->is_confirmed($event_id)) {
+	echo '<button type="submit" class="btn btn-danger" name="cancel" value="submit">Cancel</button>';
+} else {
+	echo '<button type="submit" class="btn btn-success" name="confirm" value="submit">Confirm</button>';
+}
+?>
                                 </form>
                             </div>
                         </div>

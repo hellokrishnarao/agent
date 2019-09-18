@@ -6,6 +6,9 @@ require "../../Teacher.php";
 session_start();
 
 $teacher = new Teacher(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+if (!$teacher->get_session()) {
+	header("location:../../login");
+}
 $data = $teacher->get_teacher_info();
 $teacher->set_id($_SESSION['id']);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

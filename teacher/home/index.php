@@ -181,7 +181,7 @@ $_SESSION = array_merge($_SESSION, $data);
      }
 
      else if(title == "Confirmed"){
-      // code to Cancellation of the class
+      location.href = "./requests?id="+event.student_id+"&event="+event.id;
      }
     },
 

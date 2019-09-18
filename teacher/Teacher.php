@@ -145,10 +145,26 @@ class Teacher {
 
 	}
 
+	public function is_confirmed($event_id) {
+
+		$result = "SELECT  is_confirmed from events WHERE id='$event_id'";
+
+		//checking if the username is available in the table
+		$result = mysqli_query($this->db, $result);
+		$user_data = mysqli_fetch_array($result);
+		$count_row = $result->num_rows;
+
+		if ($user_data[0] == '1') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function confirm_event($start_event, $end_event, $event_id) {
 		$update = "UPDATE events
  SET title='Confirmed', is_confirmed='1', start_event='$start_event', end_event='$end_event'
- WHERE id = $event_id
+ WHERE id = '$event_id'
  ";
 		$result = mysqli_query($this->db, $update);
 
@@ -159,6 +175,14 @@ class Teacher {
 		} else {
 			return false;
 		}
+	}
+	public function cancel_event($event_id) {
+
+		$result = "DELETE FROM `events` WHERE id='$event_id'";
+
+		//checking if the username is available in the table
+		$result = mysqli_query($this->db, $result);
+		return true;
 	}
 	public function get_start_event($event_id) {
 

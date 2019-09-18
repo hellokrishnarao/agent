@@ -6,6 +6,9 @@ require "../../Student.php";
 session_start();
 
 $student = new Student(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+if (!$student->get_session()) {
+	header("location:../../login");
+}
 $data = $student->get_student_info();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
