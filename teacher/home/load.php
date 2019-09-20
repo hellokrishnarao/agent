@@ -4,7 +4,13 @@ require "../../database/db-config.php";
 session_start();
 //load.php
 $id = $_SESSION['id'];
-$connect = new PDO('mysql:host=localhost;dbname=agent', 'root', 'root9080');
+$dbserver = DB_SERVER;
+$dbuser = DB_USERNAME;
+$dbpassword = DB_PASSWORD;
+$db = DB_DATABASE;
+
+$con = 'mysql:host=' . $dbserver . ';dbname=' . $db;
+$connect = new PDO($con, 'root', 'root9080');
 
 $query = "SELECT * FROM events WHERE teacher_id=$id ORDER BY id";
 

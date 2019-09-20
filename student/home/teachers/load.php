@@ -1,10 +1,16 @@
 <?php
-
+require "../../../database/db-config.php";
 session_start();
 //load.php
 
+$dbserver = DB_SERVER;
+$dbuser = DB_USERNAME;
+$dbpassword = DB_PASSWORD;
+$db = DB_DATABASE;
+
+$con = 'mysql:host=' . $dbserver . ';dbname=' . $db;
 $id = $_SESSION['teacher_id'];
-$connect = new PDO('mysql:host=localhost;dbname=agent', 'root', 'root9080');
+$connect = new PDO($con, $dbuser, $dbpassword);
 $student_id = $_SESSION['id'];
 $teacher_id = $_SESSION['teacher_id'];
 $query = "SELECT * FROM events WHERE teacher_id=$id and title='Available' or student_id=$student_id and title='Booked' ORDER BY id";

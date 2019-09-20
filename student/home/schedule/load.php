@@ -1,10 +1,18 @@
 <?php
 require "../../../error-report.php";
 require "../../../database/db-config.php";
+
 session_start();
 //load.php
 $id = $_SESSION['id'];
-$connect = new PDO('mysql:host=localhost;dbname=agent', 'root', 'root9080');
+
+$dbserver = DB_SERVER;
+$dbuser = DB_USERNAME;
+$dbpassword = DB_PASSWORD;
+$db = DB_DATABASE;
+
+$con = 'mysql:host=' . $dbserver . ';dbname=' . $db;
+$connect = new PDO($con, $dbuser, $dbpassword);
 
 $query = "SELECT * FROM events WHERE student_id=$id ORDER BY id";
 
@@ -27,6 +35,7 @@ foreach ($result as $row) {
 		$data[] = array(
 			'id' => $row["id"],
 			'title' => "Waiting For Confirmation",
+			'description' => '', /// will show up when
 			'start' => $row["start_event"],
 			'end' => $row["end_event"],
 			'color' => '#00BFFF',
@@ -36,6 +45,7 @@ foreach ($result as $row) {
 		$data[] = array(
 			'id' => $row["id"],
 			'title' => $row["title"],
+			'description' => $row["first_name"], // write a query to fetch the teachers name using teachers ID,
 			'start' => $row["start_event"],
 			'end' => $row["end_event"],
 			'color' => '#53D467',

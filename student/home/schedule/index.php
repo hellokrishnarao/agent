@@ -144,7 +144,15 @@ background: #FF3161;
       })
      }
     },
-
+eventRender: function(eventObj, $el) {
+    $el.popover({
+      title: eventObj.title,
+      content: eventObj.description,
+      trigger: 'hover',
+      placement: 'top',
+      container: 'body'
+    });
+  }
    });
    $( ".fc-v-event" ).css( "background", "red" );
    $( ".fc-event" ).css( "background", "red" );

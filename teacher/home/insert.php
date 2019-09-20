@@ -3,8 +3,13 @@ require "../../error-report.php";
 require "../../database/db-config.php";
 session_start();
 //insert.php
+$dbserver = DB_SERVER;
+$dbuser = DB_USERNAME;
+$dbpassword = DB_PASSWORD;
+$db = DB_DATABASE;
 
-$connect = new PDO('mysql:host=localhost;dbname=agent', 'root', 'root9080');
+$con = 'mysql:host=' . $dbserver . ';dbname=' . $db;
+$connect = new PDO($con, 'root', 'root9080');
 
 if (isset($_POST["title"])) {
 	$query = "
