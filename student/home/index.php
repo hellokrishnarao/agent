@@ -279,7 +279,7 @@ foreach ($teachers as $teacher => $values) {
 
 
 
-    <div class="span3 well">
+    <div class="span3 well" >
         <center>
         <a href="#aboutModal" data-toggle="modal" data-target="#myModal' . $i . '"><img src="assets/img/profile.png" class="img-circle responsive img-fluid"></a>
         <h3>' . $values["first_name"] . ' ' . $values["last_name"] . '</h3>
@@ -287,7 +287,7 @@ foreach ($teachers as $teacher => $values) {
     </center>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="myModal' . $i . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal' . $i . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="font-size:15px">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -310,13 +310,15 @@ foreach ($teachers as $teacher => $values) {
                     </center>
                 </div>
                 <div class="modal-footer">
+
                     <center>
 
 <form action="teachers" method="get">
-                    <button type="submit" style="float=left" name="id" value="' . $values["id"] . '" class="logout btn btn-success" >Check Availability</button>
+                    <button type="submit"  name="id" value="' . $values["id"] . '" class="logout btn btn-success"  style="font-size: 15px !important;">Check Availability</button>
 
+                    <button class="logout btn btn-danger" style="font-size: 15px !important;" data-dismiss="modal">Cancel</button>
 </form>
-                    <a href="" class="logout btn btn-danger" data-dismiss="modal">Cancel</a>
+
                     </center>
                 </div>
             </div>

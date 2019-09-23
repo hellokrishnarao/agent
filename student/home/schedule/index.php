@@ -1,4 +1,4 @@
- <?php
+  <?php
 require "../../../error-report.php";
 require "../../../database/db-config.php";
 session_start();

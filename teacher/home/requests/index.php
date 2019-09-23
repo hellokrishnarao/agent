@@ -259,9 +259,9 @@ body{
             <div class="col-12">
 
 
-                    <div class="card-body">
-                        <div class="card-title mb-4">
-                            <div class="d-flex justify-content-start">
+                    <div class="card-body " style="font-size: 2em !important;">
+                        <div class="">
+                            <div class="" >
                               <!--   <div class="image-container">
                                     <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
                                     <div class="middle">
@@ -277,7 +277,7 @@ if (isset($error)) {
 ?>
             </p><br/>
                                 <div class="userData ml-3">
-                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href=""><?php echo $student_info['first_name'] . ' ' . $student_info['last_name'] ?></a></h2>
+                                    <h2 class="d-block" style="font-weight: bold"><a href=""><?php echo $student_info['first_name'] . ' ' . $student_info['last_name'] ?></a></h2>
                                     <!-- <h6 class="d-block"><a href="">1,500</a> Video Uploads</h6>
                                     <h6 class="d-block"><a href="">300</a> Blog Posts</h6> -->
                                 </div>
@@ -353,9 +353,9 @@ if (isset($error)) {
                                 </div>
                                 <form action="" method="post">
                                   <?php if ($teacher->is_confirmed($event_id)) {
-	echo '<button type="submit" class="btn btn-danger" name="cancel" value="submit">Cancel</button>';
+	echo '<button type="submit" class="btn btn-danger" style="font-size: 15px !important;" name="cancel" value="submit">Cancel</button>';
 } else {
-	echo '<button type="submit" class="btn btn-success" name="confirm" value="submit">Confirm</button>';
+	echo '<button type="submit" class="btn btn-success"  style="font-size: 15px !important;" name="confirm" value="submit">Confirm</button>';
 }
 ?>
                                 </form>

@@ -438,7 +438,7 @@ if (isset($error)) {
                 <textarea type="text" name="description" value="" class="col-sm form-control  mr-2" placeholder="About your interests, goals and expectations from class"></textarea>
             </div>
             <div class=" form-group">
-                   <p style="font-size:13px;" class="col-sm form-control ">By submitting, I accept the <a href="terms/">Terms and Conditions</a><p>
+                   <p style="font-size:13px;" class="col-sm form-control ">By submitting, I accept the <a href="../../terms/">Terms and Conditions</a><p>
             </div>
 
             <input type="button" name="previous" class="previous action-button" value="Previous" />
